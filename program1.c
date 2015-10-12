@@ -13,9 +13,8 @@
 
 #define MAX_NUM 16
 #define MAX_DECIMAL 2147483647 //for int
-#define for_each_item(item, list) 
-    for(T * item = list->head; item != NULL; item = item->next)
 
+static char baseArray[MAX_NUM] = { 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F }; //create the base Array with all the digits necessary
 // Implement the rest of the program
 
 int main(){
@@ -24,7 +23,6 @@ int main(){
 	int in_base = 0;
 	int out_base = 0;
 	char out_number[MAX_NUM+1];
-
 
 
 	int remainder, quotient;
