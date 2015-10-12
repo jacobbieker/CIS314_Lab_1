@@ -36,5 +36,14 @@ int main(){
 	printf("Enter the number to be converted");
 	scanf("%d", &in_number);
 
+	while (quotient != 0)
+	{
+		numberRemainder[i++] = quotient % out_base;
+
+		quotient = quotient / out_base;
+	}
+
+	printf("The base %s representation of the base %s number %d is: %d", &in_base, &out_base, &in_number, &out_number);
+
 	return 0;
 }
