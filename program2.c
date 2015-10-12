@@ -38,7 +38,18 @@ int main(void) {
 }
 
 int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_number, int high_number) {
+	if (low_number > high_number)
+	{
+		return -1;
+	}
+	int mid = (low_number + high_number)/2
+	else if (list_of_numbers[mid] == desired_number)
+	{
+		return mid;
+	}
+	else if ( {
 
+	}
 
 }
 
