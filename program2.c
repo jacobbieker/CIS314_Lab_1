@@ -47,8 +47,13 @@ int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_num
 	{
 		return mid;
 	}
-	else if ( {
-
+	else if (list_of_numbers[mid] < desired_number)
+	{
+		return recursiveBinarySearch(list_of_numbers, desired_number, mid + 1, high_number);
+	}
+	else
+	{
+		return recursiveBinarySearch(list_of_numbers, desired_number, low_number, mid - 1);
 	}
 
 }
