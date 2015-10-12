@@ -43,5 +43,6 @@ int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_num
 }
 
 int iterativeBinarySearch(int list_of_numbers[], int desired_number) {
-
+	int low = 0;
+	int high = (sizeof(list_of_numbers)/sizeof(list_of_numbers[0])) - 1
 }
