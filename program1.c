@@ -50,3 +50,19 @@ int main(){
 
 	return 0;
 }
+
+int toDecimal(int number) {
+	int remainder;
+	char decimalArray[MAX_DECIMAL], i = 1, j;
+
+	while (number != 0) {
+		int digitLoc = number % out_base;
+		decimalArray[i++] = baseArray[digitLoc];
+
+		number = number / 10;
+	}
+	//Go through decimalArray and loop until there is a null, then stop, converting the rest to an int
+
+
+	return ;
+}
