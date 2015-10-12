@@ -40,7 +40,8 @@ int main(){
 
 	while (quotient != 0)
 	{
-		numberRemainder[i++] = quotient % out_base;
+		int digitLoc = quotient % out_base;
+		numberRemainder[i++] = baseArray[digitLoc];
 
 		quotient = quotient / out_base;
 	}
@@ -48,21 +49,4 @@ int main(){
 	printf("The base %s representation of the base %s number %d is: %d", &in_base, &out_base, &in_number, &out_number);
 
 	return 0;
-}
-
-int toDigits(int number, int base) {
-// Convert from a number to a specific base
-	int digits[MAX_DECIMAL], i = 1, j;
-		while (number > 0) {
-			digits[i++] = number % base;
-			number = number / base;
-			return digits;
-		}
-	
-}
-
-int fromDigits(int digits, int base) {
-	// Convert from an array of digits to a specific base
-	int number = 0;
-	for 
 }
