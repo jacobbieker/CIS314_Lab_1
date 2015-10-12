@@ -53,16 +53,19 @@ int main(){
 
 int toDecimal(int number) {
 	int remainder;
-	char decimalArray[MAX_DECIMAL], i = 1, j;
+	int decimalArray[MAX_DECIMAL], i = 1, j;
 
 	while (number != 0) {
-		int digitLoc = number % out_base;
-		decimalArray[i++] = baseArray[digitLoc];
+		remainder = number % out_base;
+		decimalArray[i++] = remainder;
 
 		number = number / 10;
 	}
-	//Go through decimalArray and loop until there is a null, then stop, converting the rest to an int
+	//Loop through to create one number out of the array
+	for (j = i - 1; j > 0; j--) {
+		decimalArray[j];
 
+	}
 
 	return ;
 }
