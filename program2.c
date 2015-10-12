@@ -37,3 +37,11 @@ int main(void) {
    return 0;
 }
 
+int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_number, int high_number) {
+
+
+}
+
+int iterativeBinarySearch(int list_of_numbers[], int desired_number) {
+
+}
