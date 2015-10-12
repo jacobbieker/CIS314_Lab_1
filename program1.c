@@ -13,6 +13,8 @@
 
 #define MAX_NUM 16
 #define MAX_DECIMAL 2147483647 //for int
+#define for_each_item(item, list) 
+    for(T * item = list->head; item != NULL; item = item->next)
 
 // Implement the rest of the program
 
@@ -22,6 +24,8 @@ int main(){
 	int in_base = 0;
 	int out_base = 0;
 	char out_number[MAX_NUM+1];
+
+
 
 	int remainder, quotient;
 
@@ -46,4 +50,21 @@ int main(){
 	printf("The base %s representation of the base %s number %d is: %d", &in_base, &out_base, &in_number, &out_number);
 
 	return 0;
+}
+
+int toDigits(int number, int base) {
+// Convert from a number to a specific base
+	int digits[MAX_DECIMAL], i = 1, j;
+		while (number > 0) {
+			digits[i++] = number % base;
+			number = number / base;
+			return digits;
+		}
+	
+}
+
+int fromDigits(int digits, int base) {
+	// Convert from an array of digits to a specific base
+	int number = 0;
+	for 
 }
