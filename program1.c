@@ -56,16 +56,44 @@ int toDecimal(int number) {
 	int decimalArray[MAX_DECIMAL], i = 1, j;
 
 	while (number != 0) {
-		remainder = number % out_base;
+		remainder = number % 10;
 		decimalArray[i++] = remainder;
 
 		number = number / 10;
 	}
 	//Loop through to create one number out of the array
+	int decimalized_number;
 	for (j = i - 1; j > 0; j--) {
-		decimalArray[j];
+		int temp_num = decimalArray[j];
+		int exponential_value = i;
+		for ( int k = i; k > 0; k--)
+		{
+			temp_num *= 10; //Moves the digit to the correct spot
+		}
+		decimalized_number += temp_num;
+	}
+
+	printf("The decimal representation of %d is: %d", &number, &decimalized_number);
+	return decimalized_number;
+}
+
+int fromDecimal(int number, int base) {
+	int remainder;
+	int decimalArray[MAX_DECIMAL], i = 1, j;
+
+	while (number != 0)
+	{
+		remainder = number % base;
+		decimalArray[i++] = baseArray[remainder];
+
+		number = number / base;
+	}
+
+	printf("The base %d representation of %d is: ", &base, &number);
+	for (j = i - 1; j > 0; j--) {
+		printf("%d", decimalArray[j]);
 
 	}
 
-	return ;
+	return 0;
 }
