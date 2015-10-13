@@ -17,6 +17,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+
+
 #define MAX_SIZE 150
 #define FILE_NAME "array.dat" //must include quotes
 
@@ -34,9 +36,46 @@ int main(void) {
 
    printf("\n\n");
 
+   int delta;
+   clock_t t1, t2;
+   t1 = clock();
+   // CODE HERE
+   t2 = clock();
+   delta = t2 - t1;
+
+   int delta1;
+   clock_t t3, t4;
+   t3 = clock();
+   // CODE HERE
+   t4 = clock();
+   delta1 = t3 - t4;
+
    return 0;
 }
 
+int readInput(FILE input_file, char file_name, int size_of_array) {
+	int count = 0;
+	int value = 0;
+	int values[size_of_array];
+	input_file = fopen(file_name, "r");
+	if (file == NULL)
+	{
+		printf("Error: can't open file to read\n");
+	}
+	else
+	{
+		printf("File " + file_name + " opened successfully to read\n");
+	}
+	if (file) {
+		while (fscanf(file, "%d", &value) != NULL) {
+			values[count] = value;
+			count++;
+		}
+	}
+	fclose(file);
+
+	return values;
+}
 int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_number, int high_number) {
 	if (low_number > high_number)
 	{
