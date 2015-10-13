@@ -36,29 +36,16 @@ int main(void) {
 
    printf("\n\n");
 
-   int delta;
-   clock_t t1, t2;
-   t1 = clock();
-   // CODE HERE
-   t2 = clock();
-   delta = t2 - t1;
-
-   int delta1;
-   clock_t t3, t4;
-   t3 = clock();
-   // CODE HERE
-   t4 = clock();
-   delta1 = t3 - t4;
+   array = readInput(*in_file, in_file_name[], array);
 
    return 0;
 }
 
-int readInput(FILE input_file, char file_name, int size_of_array) {
+int readInput(FILE *input_file, char file_name, int values[]) {
 	int count = 0;
 	int value = 0;
-	int values[size_of_array];
 	input_file = fopen(file_name, "r");
-	if (file == NULL)
+	if (input_file == EOF)
 	{
 		printf("Error: can't open file to read\n");
 	}
@@ -66,13 +53,31 @@ int readInput(FILE input_file, char file_name, int size_of_array) {
 	{
 		printf("File " + file_name + " opened successfully to read\n");
 	}
-	if (file) {
-		while (fscanf(file, "%d", &value) != NULL) {
+	if (input_file) {
+		while (fscanf(input_file, "%d", &value) != EOF) {
 			values[count] = value;
 			count++;
 		}
 	}
-	fclose(file);
+	fclose(input_file);
+
+	int desired_number = 0;
+	printf("Enter what number to find: ");
+	scanf("%d", &desired_number);
+
+	int delta;
+	clock_t t1, t2;
+	t1 = clock();
+	recursiveBinarySearch()
+	t2 = clock();
+	delta = t2 - t1;
+
+	int delta1;
+	clock_t t3, t4;
+	t3 = clock();
+	iterativeBinarySearch()
+	t4 = clock();
+	delta1 = t3 - t4;
 
 	return values;
 }
