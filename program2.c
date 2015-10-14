@@ -68,7 +68,7 @@ int readInput(FILE *input_file, char file_name, int values[], int desired_number
 	int delta;
 	clock_t t1, t2;
 	t1 = clock();
-	int recursive_result = recursiveBinarySearch(values, desired_number, 0, (sizeof(vaues) / sizeof(values[0])) - 1);
+	int recursive_result = recursiveBinarySearch(values, desired_number, 0, (sizeof(values) / sizeof(values[0])) - 1);
 	t2 = clock();
 	delta = t2 - t1;
 

@@ -61,31 +61,42 @@ int toDecimal(char number[]) {
 	{
 		int single_digit = 0;
 		if (number[i] == 'A') {
-			single_digit = 11;
+			single_digit = 10;
 		}
 		else if (number[i] == 'B') {
-			single_digit = 12;
+			single_digit = 11;
 		}
 		else if (number[i] == 'C') {
-			single_digit = 13;
+			single_digit = 12;
 		}
 		else if (number[i] == 'D') {
-			single_digit = 14;
+			single_digit = 13;
 		}
 		else if (number[i] == 'E') {
-			single_digit = 15;
+			single_digit = 14;
 		}
 		else if (number[i] == 'F')
 		{
-			single_digit = 16;
+			single_digit = 15;
 		}
 		else {
 			single_digit = number[i] - '0'; //converts from char to int
 		}
-		decimalArray[array_size - l];
+		decimalArray[l];//have to reverse this when reading it out
 	}
 
-
+	int decimal_array_size = (sizeof(decimalArray) / sizeof(decimalArray[0])) - 1;
+	int number_to_decimal = 0;
+	for (i = 0; i < decimal_array_size; i++) {
+		int temp_num = decimalArray[i];
+		int exponential_value = decimal_array_size - i;
+		int k;
+		for (k = exponential_value; k > 0; k--)
+		{
+			temp_num *= 10; //Moves the digit to the correct spot
+		}
+		number_to_decimal += temp_num;//not reversed, so smallest part first and builds from there
+	}
 	while (number != 0) {
 		remainder = number % 10;
 		decimalArray[i++] = remainder;
@@ -94,9 +105,9 @@ int toDecimal(char number[]) {
 	}
 	//Loop through to create one number out of the array
 	int decimalized_number;
-	for (j = i - 1; j > 0; j--) {
+	for (j = 0; j < decimal_array_size; j++) {
 		int temp_num = decimalArray[j];
-		int exponential_value = i;
+		int exponential_value = decimal_array_size - j;
 		int k;
 		for ( k = i; k > 0; k--)
 		{
