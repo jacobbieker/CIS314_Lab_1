@@ -14,7 +14,7 @@
 #define MAX_NUM 16
 #define MAX_DECIMAL 2147483647 //for int
 
-static char baseArray[MAX_NUM] = { 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F }; //create the base Array with all the digits necessary
+static char baseArray[MAX_NUM] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' }; //create the base Array with all the digits necessary
 // Implement the rest of the program
 
 int main(){
@@ -36,7 +36,7 @@ int main(){
 	scanf("%d", &out_base);
 
 	printf("Enter the number to be converted");
-	scanf("%d", &in_number);
+	scanf("%s", &in_number);
 
 	while (quotient != 0)
 	{
@@ -46,12 +46,12 @@ int main(){
 		quotient = quotient / out_base;
 	}
 
-	printf("The base %s representation of the base %s number %d is: %d", &in_base, &out_base, &in_number, &out_number);
+	printf("The base %d representation of the base %d number %s is: %s", &in_base, &out_base, &in_number, &out_number);
 
 	return 0;
 }
 
-int toDecimal(int number) {
+int toDecimal(char number) {
 	int remainder;
 	int decimalArray[MAX_DECIMAL], i = 1, j;
 
@@ -66,14 +66,15 @@ int toDecimal(int number) {
 	for (j = i - 1; j > 0; j--) {
 		int temp_num = decimalArray[j];
 		int exponential_value = i;
-		for ( int k = i; k > 0; k--)
+		int k;
+		for ( k = i; k > 0; k--)
 		{
 			temp_num *= 10; //Moves the digit to the correct spot
 		}
 		decimalized_number += temp_num;
 	}
 
-	printf("The decimal representation of %d is: %d", &number, &decimalized_number);
+	printf("The decimal representation of %s is: %d", &number, &decimalized_number);
 	return decimalized_number;
 }
 
