@@ -51,9 +51,40 @@ int main(){
 	return 0;
 }
 
-int toDecimal(char number) {
+int toDecimal(char number[]) {
 	int remainder;
 	int decimalArray[MAX_DECIMAL], i = 1, j;
+
+	int l;
+	int array_size = (sizeof(number) / sizeof(number[0])) - 1
+	for (l = 0; l < array_size; l++)
+	{
+		int single_digit = 0;
+		if (number[i] == 'A') {
+			single_digit = 11;
+		}
+		else if (number[i] == 'B') {
+			single_digit = 12;
+		}
+		else if (number[i] == 'C') {
+			single_digit = 13;
+		}
+		else if (number[i] == 'D') {
+			single_digit = 14;
+		}
+		else if (number[i] == 'E') {
+			single_digit = 15;
+		}
+		else if (number[i] == 'F')
+		{
+			single_digit = 16;
+		}
+		else {
+			single_digit = number[i] - '0'; //converts from char to int
+		}
+		decimalArray[array_size - l];
+	}
+
 
 	while (number != 0) {
 		remainder = number % 10;
