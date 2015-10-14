@@ -56,7 +56,8 @@ int toDecimal(char number[]) {
 	int decimalArray[MAX_DECIMAL], i = 1, j;
 
 	int l;
-	int array_size = (sizeof(number) / sizeof(number[0])) - 1
+	int array_size = (sizeof(number) / sizeof(number[0])) - 1;
+	// For loop converts each char to its decimal int representation
 	for (l = 0; l < array_size; l++)
 	{
 		int single_digit = 0;
@@ -88,14 +89,7 @@ int toDecimal(char number[]) {
 	int decimal_array_size = (sizeof(decimalArray) / sizeof(decimalArray[0])) - 1;
 	int number_to_decimal = 0;
 	for (i = 0; i < decimal_array_size; i++) {
-		int temp_num = decimalArray[i];
-		int exponential_value = decimal_array_size - i;
-		int k;
-		for (k = exponential_value; k > 0; k--)
-		{
-			temp_num *= 10; //Moves the digit to the correct spot
-		}
-		number_to_decimal += temp_num;//not reversed, so smallest part first and builds from there
+		
 	}
 	while (number != 0) {
 		remainder = number % 10;
