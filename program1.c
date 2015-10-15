@@ -24,37 +24,31 @@ int main(){
 	int out_base = 0;
 	char out_number[MAX_NUM+1];
 
-
-	int remainder, quotient;
-
-	int numberRemainder[MAX_DECIMAL], i = 1, j;
-
-	printf("Enter a number for the base to convert from, between 2 and 16");
+	printf("Enter a number for the base to convert from, between 2 and 16: ");
 	scanf("%d", &in_base);
 	
-	printf("Enter a number for the base to be converted to, between 2 and 16");
+	printf("Enter a number for the base to be converted to, between 2 and 16: ");
 	scanf("%d", &out_base);
 
-	printf("Enter the number to be converted");
-	scanf("%s", &in_number[0]);
-
-	int decimalized_number = toDecimal(in_number);
-	printf("The decimal representation of %s is: %d", in_number, decimalized_number);
+	printf("Enter the number to be converted: ");
+	scanf("%s", in_number);
 
 	//Check input to see if outside the limits
-	if (in_base )
+	if (16 < in_base || in_base < 2 )
 	{
-		//TODO Fix
+		printf("Inputted base is too large.");
+		return -1;
 	}
-	while (quotient != 0)
-	{
-		int digitLoc = quotient % out_base;
-		numberRemainder[i++] = baseArray[digitLoc];
-
-		quotient = quotient / out_base;
+	else if (16 < out_base || out_base < 2) {
+		printf("Outputted base is too large.");
+		return -1;
 	}
 
-	printf("The base %d representation of the base %d number %s is: %s", in_base, out_base, in_number, out_number);
+	int decimalized_number = toDecimal(in_number, in_base);
+	printf("\nThe decimal representation of %s is: %d \n", in_number, decimalized_number);
+
+	int based_number = fromDecimal(decimalized_number, out_base);
+	printf("\nThe base %d representation of the base %d number %s is: %s \n", in_base, out_base, in_number, out_number);
 
 	return 0;
 }
@@ -62,7 +56,7 @@ int main(){
 int toDecimal(char number[], int in_base) {
 	int valuefound = 0;//used as boolean
 	int decval;
-	char *current;
+	char *current = &number[0];
 	int i;
 
 	while (*current) {
@@ -87,19 +81,19 @@ int toDecimal(char number[], int in_base) {
 
 int fromDecimal(int number, int base) {
 	int remainder;
-	char decimalArray[MAX_NUM+1], i = 1, j;
+	char outbaseArray[MAX_NUM+1], i = 1, j;
 
 	while (number != 0)
 	{
 		remainder = number % base;
-		decimalArray[i++] = baseArray[remainder];
+		outbaseArray[i++] = baseArray[remainder];
 
 		number = number / base;
 	}
 
-	printf("The base %d representation of %d is: ", base, number);
+	printf("The base %d representation of %d is: ", number, base);
 	for (j = i - 1; j > 0; j--) {
-		printf("%s", decimalArray[j]);
+		printf("%c", outbaseArray[j]);
 	}
 
 	return 0;
