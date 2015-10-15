@@ -12,7 +12,7 @@
 #include <math.h>
 
 #define MAX_NUM 16
-#define MAX_DECIMAL 2147483647 //for int
+#define MAX_DECIMAL 2147483647
 
 static char baseArray[MAX_NUM+1] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' }; //create the base Array with all the digits necessary
 // Implement the rest of the program
@@ -76,6 +76,8 @@ int toDecimal(char number[], int in_base) {
 		}
 		++current;
 	}
+
+	//TODO Check if decimal is negative as that would be overflow, throw error
 	return decval; // returns the correct decimal value
 }
 
