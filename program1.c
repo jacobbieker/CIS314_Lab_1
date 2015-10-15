@@ -14,7 +14,7 @@
 #define MAX_NUM 16
 #define MAX_DECIMAL 2147483647 //for int
 
-static char baseArray[MAX_NUM] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' }; //create the base Array with all the digits necessary
+static char baseArray[MAX_NUM+1] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' }; //create the base Array with all the digits necessary
 // Implement the rest of the program
 
 int main(){
@@ -38,6 +38,11 @@ int main(){
 	printf("Enter the number to be converted");
 	scanf("%s", &in_number);
 
+	//Check input to see if outside the limits
+	if (in_base )
+	{
+		//TODO Fix
+	}
 	while (quotient != 0)
 	{
 		int digitLoc = quotient % out_base;
@@ -53,62 +58,31 @@ int main(){
 
 int toDecimal(char number[]) {
 	int remainder;
-	int decimalArray[MAX_DECIMAL], i = 1, j;
+	int decimalArray[MAX_NUM+1], i = 1, j;
 
-	int l;
-	int array_size = (sizeof(number) / sizeof(number[0])) - 1;
-	// For loop converts each char to its decimal int representation
-	for (l = 0; l < array_size; l++)
-	{
-		int single_digit = 0;
-		if (number[i] == 'A') {
-			single_digit = 10;
-		}
-		else if (number[i] == 'B') {
-			single_digit = 11;
-		}
-		else if (number[i] == 'C') {
-			single_digit = 12;
-		}
-		else if (number[i] == 'D') {
-			single_digit = 13;
-		}
-		else if (number[i] == 'E') {
-			single_digit = 14;
-		}
-		else if (number[i] == 'F')
-		{
-			single_digit = 15;
-		}
-		else {
-			single_digit = number[i] - '0'; //converts from char to int
-		}
-		decimalArray[l];//have to reverse this when reading it out
-	}
+	int valuefound = 0;//used as boolean
+	int decval;
 
-	int decimal_array_size = (sizeof(decimalArray) / sizeof(decimalArray[0])) - 1;
-	int number_to_decimal = 0;
-	for (i = 0; i < decimal_array_size; i++) {
-		
-	}
-	while (number != 0) {
-		remainder = number % 10;
-		decimalArray[i++] = remainder;
+	char *current;
 
-		number = number / 10;
-	}
-	//Loop through to create one number out of the array
-	int decimalized_number;
-	for (j = 0; j < decimal_array_size; j++) {
-		int temp_num = decimalArray[j];
-		int exponential_value = decimal_array_size - j;
-		int k;
-		for ( k = i; k > 0; k--)
-		{
-			temp_num *= 10; //Moves the digit to the correct spot
+	while (*current) {
+		decval = decval * in_base;
+		for (i = 0; valuefound = 0; i <= MAX_NUM; i++) {
+			if (baseArray[i] == *current) {
+				if (i < in_base) {
+					decval += 1;
+					valuefound = 1;
+				}
+				else {
+					return -1;
+				}
+			} if (i == MAX_NUM && valuefound == 0) {
+				return -1;
+			}
 		}
-		decimalized_number += temp_num;
+		++current;
 	}
+	return decval; // returns the correct decimal value
 
 	printf("The decimal representation of %s is: %d", &number, &decimalized_number);
 	return decimalized_number;
