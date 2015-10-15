@@ -36,7 +36,10 @@ int main(){
 	scanf("%d", &out_base);
 
 	printf("Enter the number to be converted");
-	scanf("%s", &in_number);
+	scanf("%s", &in_number[0]);
+
+	int decimalized_number = toDecimal(in_number);
+	printf("The decimal representation of %s is: %d", in_number, decimalized_number);
 
 	//Check input to see if outside the limits
 	if (in_base )
@@ -51,23 +54,20 @@ int main(){
 		quotient = quotient / out_base;
 	}
 
-	printf("The base %d representation of the base %d number %s is: %s", &in_base, &out_base, &in_number, &out_number);
+	printf("The base %d representation of the base %d number %s is: %s", in_base, out_base, in_number, out_number);
 
 	return 0;
 }
 
-int toDecimal(char number[]) {
-	int remainder;
-	int decimalArray[MAX_NUM+1], i = 1, j;
-
+int toDecimal(char number[], int in_base) {
 	int valuefound = 0;//used as boolean
 	int decval;
-
 	char *current;
+	int i;
 
 	while (*current) {
 		decval = decval * in_base;
-		for (i = 0; valuefound = 0; i <= MAX_NUM; i++) {
+		for (i = 0, valuefound = 0; i <= MAX_NUM; i++) {
 			if (baseArray[i] == *current) {
 				if (i < in_base) {
 					decval += 1;
@@ -83,14 +83,11 @@ int toDecimal(char number[]) {
 		++current;
 	}
 	return decval; // returns the correct decimal value
-
-	printf("The decimal representation of %s is: %d", &number, &decimalized_number);
-	return decimalized_number;
 }
 
 int fromDecimal(int number, int base) {
 	int remainder;
-	int decimalArray[MAX_DECIMAL], i = 1, j;
+	char decimalArray[MAX_NUM+1], i = 1, j;
 
 	while (number != 0)
 	{
@@ -100,10 +97,9 @@ int fromDecimal(int number, int base) {
 		number = number / base;
 	}
 
-	printf("The base %d representation of %d is: ", &base, &number);
+	printf("The base %d representation of %d is: ", base, number);
 	for (j = i - 1; j > 0; j--) {
-		printf("%d", decimalArray[j]);
-
+		printf("%s", decimalArray[j]);
 	}
 
 	return 0;
