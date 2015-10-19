@@ -36,19 +36,18 @@ int main(){
 	//Check input to see if outside the limits
 	if (16 < in_base || in_base < 2 )
 	{
-		printf("Inputted base is too large.");
+		printf("Inputted base is outside range: 2-16.");
 		return -1;
 	}
 	else if (16 < out_base || out_base < 2) {
-		printf("Outputted base is too large.");
+		printf("Outputted base is outside range: 2-16.");
 		return -1;
 	}
 
 	int decimalized_number = toDecimal(in_number, in_base);
 	printf("\nThe decimal representation of %s is: %d \n", in_number, decimalized_number);
 
-	int based_number = fromDecimal(decimalized_number, out_base);
-	printf("\nThe base %d representation of the base %d number %s is: %s \n", in_base, out_base, in_number, out_number);
+	fromDecimal(decimalized_number, out_base, in_number);
 
 	return 0;
 }
@@ -81,7 +80,7 @@ int toDecimal(char number[], int in_base) {
 	return decval; // returns the correct decimal value
 }
 
-int fromDecimal(int number, int base) {
+int fromDecimal(int number, int base, char in_number[]) {
 	int remainder;
 	char outbaseArray[MAX_NUM+1], i = 1, j;
 
@@ -93,10 +92,11 @@ int fromDecimal(int number, int base) {
 		number = number / base;
 	}
 
-	printf("The base %d representation of %d is: ", number, base);
+	printf("The base %d representation of %s is: ", base, in_number);
 	for (j = i - 1; j > 0; j--) {
 		printf("%c", outbaseArray[j]);
 	}
+	printf("\n");
 
 	return 0;
 }

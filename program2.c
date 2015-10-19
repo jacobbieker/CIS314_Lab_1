@@ -40,12 +40,12 @@ int main(void) {
    printf("Enter what number to find: ");
    scanf("%d", &desired_number);
 
-   array = readInput(*in_file, in_file_name[], array, desired_number);
+   array = readInput(*in_file, in_file_name, array, desired_number);
 
    return 0;
 }
 
-int readInput(FILE *input_file, char file_name, int values[], int desired_number) {
+int readInput(FILE *input_file, char file_name[], int values[], int desired_number) {
 	int count = 0;
 	int value = 0;
 	input_file = fopen(file_name, "r");
@@ -55,10 +55,10 @@ int readInput(FILE *input_file, char file_name, int values[], int desired_number
 	}
 	else
 	{
-		printf("File " + file_name + " opened successfully to read\n");
+		printf("File opened successfully to read\n");
 	}
 	if (input_file) {
-		while (fscanf(input_file, "%d", &value) != EOF) {
+		while (fscanf(input_file, "%d", value) != EOF) {
 			values[count] = value;
 			count++;
 		}
@@ -128,12 +128,13 @@ int iterativeBinarySearch(int list_of_numbers[], int desired_number) {
 
 int displayOutput(int data_array, int recursive_result, int recursive_time, int iterative_time, int iterative_result) {
 	int array_size = (sizeof(data_array) / sizeof(data_array[0])) - 1;
+	int j = 0;
 	printf("The input array is: ");
 	for (j = array_size; j > 0; j--) {
 		printf("%d ", binaryNumber[j]);
 	}
-	printf("\nRecursive result: %d, Time taken: %d", &recursive_result, &recursive_time);
-	printf("\nIterative result: %d, Time taken: %d", &iterative_result, &recursive_time);
+	printf("\nRecursive result: %d, Time taken: %d", recursive_result, recursive_time);
+	printf("\nIterative result: %d, Time taken: %d", iterative_result, recursive_time);
 
 	return 0;
 }
