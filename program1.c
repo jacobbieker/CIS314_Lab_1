@@ -1,4 +1,5 @@
 /*
+ * Jacob Bieker
  * CIS 314 Fall 2015 Lab 1
  * Assigned project
  * 
@@ -55,11 +56,23 @@ int main(){
 int toDecimal(char number[], int in_base) {
 	int valuefound = 0;//used as boolean
 	int decval;
+	int prev_decval;
+	int temp;
 	char *current = &number[0];
 	int i;
 
 	while (*current) {
 		decval = decval * in_base;
+		if (prev_decval < MAX_DECIMAL && prev_decval > 0 && decval < 0)//Check if it overflowed in the positive direction
+		{
+			printf("Input number too large to convert");
+			return -1;
+		}
+		else if (decval < MAX_DECIMAL && decval > 0 && prev_decval < 0)//Checks if there is overflow in the negative direction
+		{
+			printf("Input number too arge to convert");
+			return -1;
+		}
 		for (i = 0, valuefound = 0; i <= MAX_NUM; i++) {
 			if (baseArray[i] == *current) {
 				if (i < in_base) {
@@ -67,6 +80,7 @@ int toDecimal(char number[], int in_base) {
 					valuefound = 1;
 				}
 				else {
+					printf("You have entered an invalid number in base %d", in_base);
 					return -1;
 				}
 			} if (i == MAX_NUM && valuefound == 0) {
@@ -74,6 +88,8 @@ int toDecimal(char number[], int in_base) {
 			}
 		}
 		++current;
+		temp = decval;
+		prev_decval = temp;
 	}
 
 	//TODO Check if decimal is negative as that would be overflow, throw error
