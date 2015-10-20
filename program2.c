@@ -48,6 +48,7 @@ int main(void) {
 int readInput(FILE *input_file, char file_name[], int values[], int desired_number) {
 	int count = 0;
 	int value = 0;
+	int array_size;
 	input_file = fopen(file_name, "r");
 	if (feof(input_file) != 0)
 	{
@@ -60,7 +61,14 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 
 	//Get the first line of the file, which gives the size of the array
 	while (fscanf(input_file, "%d", &value) != EOF) {
-		values[count] = value;
+		printf("%d", value); //Does read in all of the values
+		if (count == 0)//The first value is being read
+		{
+			array_size = value - 1;//So that the later ones start at the correct index
+		}
+		else {
+			values[count - 1] = value;
+		}
 		count++;
 	}
 	fclose(input_file);
@@ -68,14 +76,14 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 	int delta;
 	clock_t t1, t2;
 	t1 = clock();
-	int recursive_result = recursiveBinarySearch(values, desired_number, 0, (sizeof(values) / sizeof(values[0])) - 1);
+	int recursive_result = recursiveBinarySearch(values, desired_number, 0, array_size);
 	t2 = clock();
 	delta = t2 - t1;
 
 	int delta1;
 	clock_t t3, t4;
 	t3 = clock();
-	int iterative_result = iterativeBinarySearch(values, desired_number);
+	int iterative_result = iterativeBinarySearch(values, desired_number, array_size);
 	t4 = clock();
 	delta1 = t3 - t4;
 
@@ -104,9 +112,9 @@ int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_num
 
 }
 
-int iterativeBinarySearch(int list_of_numbers[], int desired_number) {
+int iterativeBinarySearch(int list_of_numbers[], int desired_number, int array_size) {
 	int low = 0;
-	int high = (sizeof(list_of_numbers) / sizeof(list_of_numbers[0])) - 1;
+	int high = array_size;
 
 	while (low <= high)
 	{
