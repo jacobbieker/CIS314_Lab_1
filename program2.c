@@ -52,16 +52,16 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 	input_file = fopen(file_name, "r");
 	if (feof(input_file) != 0)
 	{
-		printf("Error: can't open file to read\n");
+		printf("Error: can't open file\n");
+		return -1;
 	}
 	else
 	{
-		printf("File opened successfully to read\n");
+		printf("File opened successfully\n");
 	}
 
 	//Get the first line of the file, which gives the size of the array
 	while (fscanf(input_file, "%d", &value) != EOF) {
-		printf("%d", value); //Does read in all of the values
 		if (count == 0)//The first value is being read
 		{
 			array_size = value - 1;//So that the later ones start at the correct index
@@ -87,7 +87,7 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 	t4 = clock();
 	delta1 = t3 - t4;
 
-	displayOutput(values, recursive_result, delta, delta1, iterative_result);
+	displayOutput(values, array_size, recursive_result, delta, delta1, iterative_result);
 
 	return 0;
 }
@@ -134,15 +134,20 @@ int iterativeBinarySearch(int list_of_numbers[], int desired_number, int array_s
 	return -1;
 }
 
-int displayOutput(int data_array[], int recursive_result, int recursive_time, int iterative_time, int iterative_result) {
-	int array_size = (sizeof(data_array) / sizeof(data_array[0])) - 1;
+int displayOutput(int data_array[], int array_size, int recursive_result, int recursive_time, int iterative_time, int iterative_result) {
 	int j = 0;
 	printf("The input array is: ");
 	for (j = array_size; j > 0; j--) {
 		printf("%d ", data_array[j]);
 	}
-	printf("\nRecursive result: %d, Time taken: %d", recursive_result, recursive_time);
-	printf("\nIterative result: %d, Time taken: %d", iterative_result, recursive_time);
+	if (recursive_result == -1 || iterative_result == -1) {
+		printf("\nRecursive result: Did not Find, Time taken: %d \n", recursive_time);
+		printf("\nIterative result: Did not Find, Time taken: %d \n", recursive_time);
+	}
+	else {
+		printf("\nRecursive result: %d, Time taken: %d \n", recursive_result, recursive_time);
+		printf("\nIterative result: %d, Time taken: %d \n", iterative_result, recursive_time);
+	}
 
 	return 0;
 }
