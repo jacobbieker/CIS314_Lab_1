@@ -40,7 +40,7 @@ int main(void) {
    printf("Enter what number to find: ");
    scanf("%d", &desired_number);
 
-   array = readInput(*in_file, in_file_name, array, desired_number);
+   readInput(in_file, in_file_name, array, desired_number);
 
    return 0;
 }
@@ -49,7 +49,7 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 	int count = 0;
 	int value = 0;
 	input_file = fopen(file_name, "r");
-	if (input_file == EOF)
+	if (feof(input_file) != 0)
 	{
 		printf("Error: can't open file to read\n");
 	}
@@ -57,11 +57,11 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 	{
 		printf("File opened successfully to read\n");
 	}
-	if (input_file) {
-		while (fscanf(input_file, "%d", &value) != EOF) {
-			values[count] = value;
-			count++;
-		}
+
+	//Get the first line of the file, which gives the size of the array
+	while (fscanf(input_file, "%d", &value) != EOF) {
+		values[count] = value;
+		count++;
 	}
 	fclose(input_file);
 
@@ -84,11 +84,11 @@ int readInput(FILE *input_file, char file_name[], int values[], int desired_numb
 	return 0;
 }
 int recursiveBinarySearch(int list_of_numbers[], int desired_number, int low_number, int high_number) {
+	int mid = (low_number + high_number) / 2;
 	if (low_number > high_number)
 	{
 		return -1;
 	}
-	int mid = (low_number + high_number)/2
 	else if (list_of_numbers[mid] == desired_number)
 	{
 		return mid;
@@ -115,7 +115,7 @@ int iterativeBinarySearch(int list_of_numbers[], int desired_number) {
 		{
 			return mid;
 		}
-		else if (list_of_numbers[mid] < desired_number) {
+		if (list_of_numbers[mid] < desired_number) {
 			low = mid + 1;
 		}
 		else {
