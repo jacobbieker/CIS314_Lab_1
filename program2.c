@@ -138,7 +138,7 @@ int iterativeBinarySearch(int list_of_numbers[], int desired_number, int array_s
 int displayOutput(int data_array[], int array_size, int recursive_result, int recursive_time, int iterative_time, int iterative_result) {
 	int j = 0;
 	printf("The input array is: ");
-	for (j = array_size; j > 0; j--) {
+	for (j = array_size; j >= 0; j--) {
 		printf("%d ", data_array[j]);
 	}
 	if (recursive_result == -1 || iterative_result == -1) {
