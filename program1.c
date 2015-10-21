@@ -63,13 +63,13 @@ int toDecimal(char number[], int in_base) {
 	int temp;
 	char *current = &number[0];
 	int i;
-	if (decval < 0)//Check if it overflowed in the positive direction
-	{
-		printf("Input number too large to convert");
-		return -1;
-	}
 	while (*current) {
 		decval = decval * in_base;
+		if (decval < 0)//Check if it overflowed in the positive direction
+		{
+			printf("Input number too large to convert");
+			return -1;
+		}
 		for (i = 0, valuefound = 0; i <= MAX_NUM; i++) {
 			if (baseArray[i] == *current) {
 				if (i < in_base) {
