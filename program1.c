@@ -56,12 +56,24 @@ int main(){
 int toDecimal(char number[], int in_base) {
 	int valuefound = 0;//used as boolean
 	int decval = 0;
+	int prev_decval = 0;
+	int temp;
 	char *current = &number[0];
 	int i;
-
+	if (prev_decval < MAX_DECIMAL && prev_decval > 0 && decval < 0)//Check if it overflowed in the positive direction
+	{
+		printf("Input number too large to convert");
+		return -1;
+	}
+	else if (decval < MAX_DECIMAL && decval > 0 && prev_decval < 0)//Checks if there is overflow in the negative direction
+	{
+		printf("Input number too arge to convert");
+		return -1;
+	}
 	while (*current) {
 		decval = decval * in_base;
 		printf("%d\n", decval);
+		printf("prev: %d\n", prev_decval);
 		for (i = 0, valuefound = 0; i <= MAX_NUM; i++) {
 			if (baseArray[i] == *current) {
 				if (i < in_base) {
@@ -77,6 +89,8 @@ int toDecimal(char number[], int in_base) {
 			}
 		}
 		++current;
+		temp = decval;
+		prev_decval = temp;
 	}
 
 	return decval; // returns the correct decimal value
