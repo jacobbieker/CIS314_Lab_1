@@ -55,17 +55,17 @@ int main(){
 
 int toDecimal(char number[], int in_base) {
 	int valuefound = 0;//used as boolean
-	int decval;
-	int temp;
+	int decval = 0;
 	char *current = &number[0];
 	int i;
 
 	while (*current) {
 		decval = decval * in_base;
+		printf("%d\n", decval);
 		for (i = 0, valuefound = 0; i <= MAX_NUM; i++) {
 			if (baseArray[i] == *current) {
 				if (i < in_base) {
-					decval += 1;
+					decval += i;
 					valuefound = 1;
 				}
 				else {
@@ -77,7 +77,6 @@ int toDecimal(char number[], int in_base) {
 			}
 		}
 		++current;
-		
 	}
 
 	return decval; // returns the correct decimal value
